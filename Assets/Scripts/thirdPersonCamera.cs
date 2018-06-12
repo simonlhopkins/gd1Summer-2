@@ -26,17 +26,18 @@ public class thirdPersonCamera : MonoBehaviour {
 	{
         Vector3 movementVec = new Vector3(Input.GetAxis("Horizontal") * speed, 0f, Input.GetAxis("Vertical")*speed);
         transform.eulerAngles = new Vector3(0f, mainCamera.transform.eulerAngles.y, 0f);
-        rb.AddRelativeForce(movementVec*10f);
-	}
+        //rb.AddRelativeForce(movementVec*10f);
+        rb.velocity = (transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * speed) + (transform.right * Input.GetAxis("Horizontal") * Time.deltaTime * speed);
+        print(transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * speed);
+    }
 	private void LateUpdate()
 	{
         moveCamera();
 	}
 
-    float lastVelocity=0;
+    float lastVelocity = 0;
 	void moveCamera(){
 
-        print(lastVelocity - rb.velocity.magnitude);
         //angle axis rotates a vector3 around an axis
 
         //need to multiply by offset so it returns a vector3
