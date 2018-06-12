@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{8BD2CB08-229E-2B1C-5A6B-6C27858E48D0}</ProjectGuid>
+    <ProjectGuid>{BB97337E-5C79-FFDB-3841-0F7F01E22D95}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -61,10 +61,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\thirdPersonCamera.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/simonhopkins/gdSummer-2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/Users/simonhopkins/gd1Summer-2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/simonhopkins/gdSummer-2/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/simonhopkins/gd1Summer-2/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

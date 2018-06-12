@@ -6,31 +6,50 @@ public class thirdPersonCamera : MonoBehaviour {
     public Camera mainCamera;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float cursorSpeed;
     private Vector3 offset;
+    private Rigidbody rb;
 	// Use this for initialization
 	void Start () {
-        offset = new Vector3(1f, 1f, 3f);
-	}
+        rb = GetComponent<Rigidbody>();
+        //offset respresents the x, y, and z coordinates of the position of the camera
+        offset = new Vector3(transform.position.x-1f, transform.position.y + 1.0f, transform.position.z + 1.0f);
+    }
 	
 	// Update is called once per frame
 	void Update () {
         
-        moveCamera();
 	}
 
 	private void FixedUpdate()
 	{
         Vector3 movementVec = new Vector3(Input.GetAxis("Horizontal") * speed, 0f, Input.GetAxis("Vertical")*speed);
 
-        GetComponent<Rigidbody>().velocity = movementVec;
+        rb.velocity = movementVec;
+	}
+	private void LateUpdate()
+	{
+        moveCamera();
 	}
 
+    float lastVelocity=0;
+	void moveCamera(){
 
-    void moveCamera(){
-        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 2f, Vector3.up) * offset;
+        print(lastVelocity - rb.velocity.magnitude);
+        //angle axis rotates a vector3 around an axis
 
+        //need to multiply by offset so it returns a vector3
+        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * cursorSpeed, Vector3.up) * offset;
+
+        offset += (offset * (lastVelocity - rb.velocity.magnitude))/50f;
+
+        //lerp to offset + (offset *some modifier)
+        //when you release lerp back to the base offset, i.e. offset / the current modifier
         mainCamera.transform.position = transform.position + offset;
         mainCamera.transform.LookAt(transform.position);
+        lastVelocity = rb.velocity.magnitude;
+
 
 
     }
