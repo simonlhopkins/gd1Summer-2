@@ -25,24 +25,25 @@ public class thirdPersonCamera : MonoBehaviour {
 	private void FixedUpdate()
 	{
         Vector3 movementVec = new Vector3(Input.GetAxis("Horizontal") * speed, 0f, Input.GetAxis("Vertical")*speed);
-
-        rb.velocity = movementVec;
-	}
+        transform.eulerAngles = new Vector3(0f, mainCamera.transform.eulerAngles.y, 0f);
+        //rb.AddRelativeForce(movementVec*10f);
+        rb.velocity = (transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * speed) + (transform.right * Input.GetAxis("Horizontal") * Time.deltaTime * speed);
+        print(transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * speed);
+    }
 	private void LateUpdate()
 	{
         moveCamera();
 	}
 
-    float lastVelocity=0;
+    float lastVelocity = 0;
 	void moveCamera(){
 
-        print(lastVelocity - rb.velocity.magnitude);
         //angle axis rotates a vector3 around an axis
 
         //need to multiply by offset so it returns a vector3
         offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * cursorSpeed, Vector3.up) * offset;
 
-        offset += (offset * (lastVelocity - rb.velocity.magnitude))/50f;
+        offset += (offset * (lastVelocity - rb.velocity.magnitude))/30f;
 
         //lerp to offset + (offset *some modifier)
         //when you release lerp back to the base offset, i.e. offset / the current modifier

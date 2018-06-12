@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  speed: 5
+  speed: 10
   cursorSpeed: 2
 --- !u!135 &135174302009368006
 SphereCollider:
